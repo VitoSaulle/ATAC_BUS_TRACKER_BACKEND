@@ -23,7 +23,7 @@ public class FileRetrieverService {
 	private static final String FILE_ENDPOINT_URL = "https://romamobilita.it/sites/default/files/rome_rtgtfs_vehicle_positions_feed.pb";
 
 	// Set the download interval
-	private static final Duration DOWNLOAD_INTERVAL = Duration.ofSeconds(5);
+	private static final Duration DOWNLOAD_INTERVAL = Duration.ofSeconds(30);
 
 	@SuppressWarnings("unused")
 	private final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();

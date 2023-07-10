@@ -2,8 +2,12 @@ package it.atac.project;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "it.atac.project")
+@EnableMongoRepositories(basePackages = "it.atac.project.mongo.repository")
+@EntityScan(basePackages = "it.atac.project.mongo.document")
 public class AtacPositionApplication {
 
 	public static void main(String[] args) {

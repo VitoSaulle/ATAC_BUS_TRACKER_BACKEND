@@ -7,7 +7,10 @@
 		<artifactId>AtacPositionAnalytics</artifactId>
 		<version>1.0.0</version>
 	</parent>
-	<artifactId>Data</artifactId>
+	<artifactId>NoSQL</artifactId>
+	<name>NoSQL</name>
+	<description>NoSQL Module</description>
+
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -28,6 +31,11 @@
 	</dependencyManagement>
 
 	<dependencies>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-mongodb</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -43,5 +51,6 @@
 			<artifactId>logback-classic</artifactId>
 		</dependency>
 	</dependencies>
+
 
 </project>

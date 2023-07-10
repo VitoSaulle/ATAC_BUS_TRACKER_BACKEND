@@ -1,4 +1,12 @@
 spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: atac_db
+      authentication-database: atac_db
+      username: user
+      password: password
   kafka:
     bootstrap-servers: localhost:9092  # Kafka broker address and port
     producer:
