@@ -1,0 +1,47 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>it.atac</groupId>
+    <artifactId>AtacPositionAnalytics</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+    <name>AtacPositionAnalytics</name>
+
+
+    <modules>
+        <module>RawFileHandler</module>
+        <module>KafkaHandler</module>
+        <module>Data</module>
+    </modules>
+
+	<properties>
+		<java.version>19</java.version>
+	</properties>
+
+
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.11.0</version>
+				<configuration>
+					<release>19</release>
+					<compilerArgs>
+						<arg>-Xlint:all</arg>
+					</compilerArgs>
+				</configuration>
+			</plugin>
+			
+			<plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>3.9.1.2184</version>
+            </plugin>
+			
+		</plugins>
+	</build>
+</project>
