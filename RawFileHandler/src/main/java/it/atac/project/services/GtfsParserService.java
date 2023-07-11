@@ -1,10 +1,11 @@
 package it.atac.project.services;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
@@ -21,9 +22,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class GtfsParserService {
 
-//	@Autowired
-//	private ParsedFileTemplateHandlerService parsedFileTemplateHandlerService;
-
 	@Autowired
 	private AtacGtfsDataDocumentRepository atacGtfsDataDocumentRepository;
 
@@ -34,7 +32,6 @@ public class GtfsParserService {
 		try {
 
 			gtfsDataList = FeedMessage.parseFrom(gtfsFile).getEntityList().stream()
-					// .filter(entity -> entity.hasTripUpdate())
 					.map(entity -> {
 						log.info("Entity arrived: {}", entity.toString());
 						var gtfsData = new AtacGtfsData();
@@ -49,28 +46,31 @@ public class GtfsParserService {
 
 						return gtfsData;
 
-					}).collect(Collectors.toList());
+					}).toList();
 		} catch (Exception e) {
 			log.error("Error while parsing gtfs file: {}", e.getMessage());
 			return;
 		}
 
-//		// Do further processing with the parsed GTFS data
+		// Do further processing with the parsed GTFS data
 		processParsedGtfsData(gtfsDataList);
 	}
 
 	private void processParsedGtfsData(List<AtacGtfsData> gtfsDataList) {
+	    try {
+	        List<AtacGtfsDataDocument> documents = new ArrayList<>();
 
-		try {
-			gtfsDataList.forEach(data -> {
-				var doc = new AtacGtfsDataDocument();
-				BeanUtils.copyProperties(data, doc);
+	        gtfsDataList.forEach(data -> {
+	            var doc = new AtacGtfsDataDocument();
+	            BeanUtils.copyProperties(data, doc);
+	            documents.add(doc);
+	        });
 
-				atacGtfsDataDocumentRepository.save(doc);
-			});
-		} catch (Exception e) {
-			log.error("Error while saving on DB... {}", e.getMessage());
-		}
+	        atacGtfsDataDocumentRepository.saveAll(documents);
+	    } catch (DataAccessException e) {
+	        log.error("Error while saving on DB: {}", e.getMessage());
+	    }
 	}
+
 
 }
