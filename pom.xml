@@ -15,6 +15,7 @@
         <module>KafkaHandler</module>
         <module>Data</module>
         <module>NoSQL</module>
+        <module>GtfsDataHandler</module>
     </modules>
 
 	<properties>

@@ -8,10 +8,10 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @SpringBootApplication(scanBasePackages = "it.atac.project")
 @EnableMongoRepositories(basePackages = "it.atac.project.mongo.repository")
 @EntityScan(basePackages = "it.atac.project.mongo.document")
-public class AtacPositionApplication {
+public class RawFileHandlerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(AtacPositionApplication.class, args);
+		SpringApplication.run(RawFileHandlerApplication.class, args);
 	}
 
 }

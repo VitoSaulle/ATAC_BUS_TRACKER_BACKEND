@@ -1,6 +1,8 @@
 package it.atac.project.mongo.document;
 
 
+import java.time.Instant;
+
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -13,6 +15,8 @@ public class AtacGtfsDataDocument {
 
 	@Id
 	private ObjectId id;
+	
+	private Instant acquiredAt;
 	
 	private String matricola;
 	

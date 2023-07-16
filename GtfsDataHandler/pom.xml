@@ -1,19 +1,11 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>it.atac</groupId>
-	<artifactId>RawFileHandler</artifactId>
-	<name>RawFileHandler</name>
-	<version>1.0.0</version>
-	<description>Raw File Handler Module</description>
-	<packaging>jar</packaging>
 	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.7.13</version>
-		<relativePath />
+		<groupId>it.atac</groupId>
+		<artifactId>AtacPositionAnalytics</artifactId>
+		<version>1.0.0</version>
 	</parent>
+	<artifactId>GtfsDataHandler</artifactId>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -22,30 +14,22 @@
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>Hoxton.SR4</version>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
 				<type>pom</type>
+				<version>2.7.13</version>
 				<scope>import</scope>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
 	<dependencies>
-		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-mongodb</artifactId>
 		</dependency>
-		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<!-- Spring Webflux (optional, if you're using Spring WebFlux along with
-		Reactor) -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-webflux</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.protobuf-java-format</groupId>
@@ -57,48 +41,20 @@
 			<artifactId>gtfs-realtime-bindings</artifactId>
 			<version>0.0.8</version>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.kafka</groupId>
-			<artifactId>spring-kafka</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.kafka</groupId>
-			<artifactId>kafka-clients</artifactId>
-		</dependency>
+		
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>it.atac</groupId>
-			<artifactId>KafkaHandler</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-		<dependency>
 			<groupId>it.atac</groupId>
 			<artifactId>Data</artifactId>
 			<version>1.0.0</version>
 		</dependency>
-
-		<dependency>
-			<groupId>com.google.code.gson</groupId>
-			<artifactId>gson</artifactId>
-		</dependency>
-
 		<dependency>
 			<groupId>it.atac</groupId>
 			<artifactId>NoSQL</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-		<dependency>
-			<groupId>it.atac</groupId>
-			<artifactId>GtfsDataHandler</artifactId>
 			<version>1.0.0</version>
 		</dependency>
 	</dependencies>
@@ -108,7 +64,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<finalName>RawFileHandler-${project.version}</finalName>
+					<finalName>GtfsDataHandler-${project.version}</finalName>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>
