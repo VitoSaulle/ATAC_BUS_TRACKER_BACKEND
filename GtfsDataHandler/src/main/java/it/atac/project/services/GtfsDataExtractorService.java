@@ -1,7 +1,6 @@
 package it.atac.project.services;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -28,6 +27,6 @@ public class GtfsDataExtractorService {
 
                     return gtfsData;
                 })
-                .collect(Collectors.toList());
+                .toList();
     }
 }

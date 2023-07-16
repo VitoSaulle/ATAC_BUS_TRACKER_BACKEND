@@ -2,7 +2,6 @@ package it.atac.project.services;
 
 import java.time.Instant;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -21,6 +20,6 @@ public class GtfsDataToDocumentService {
 	            doc.setAcquiredAt(acquiredAt);
 	            return doc;
 	        })
-	        .collect(Collectors.toList());
+	        .toList();
 	}
 }
