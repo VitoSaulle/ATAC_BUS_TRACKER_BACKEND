@@ -1,11 +1,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+	<version>1.0.0</version>
+	<groupId>it.atac</groupId>
+	<artifactId>RealtimeDataCommunication</artifactId>
+	<name>RealtimeDataCommunication</name>
+	<packaging>jar</packaging>
+	<description>Realtime Data and API Communication Module</description>
 	<parent>
-		<groupId>it.atac</groupId>
-		<artifactId>AtacPositionAnalytics</artifactId>
-		<version>1.0.0</version>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.7.13</version>
+		<relativePath />
 	</parent>
-	<artifactId>GtfsDataHandler</artifactId>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -14,10 +20,10 @@
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-dependencies</artifactId>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>Hoxton.SR4</version>
 				<type>pom</type>
-				<version>2.7.13</version>
 				<scope>import</scope>
 			</dependency>
 		</dependencies>
@@ -42,9 +48,31 @@
 			<version>0.0.8</version>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework.kafka</groupId>
+			<artifactId>spring-kafka</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.kafka</groupId>
+			<artifactId>kafka-clients</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-quartz</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>it.atac</groupId>
+			<artifactId>KafkaHandler</artifactId>
+			<version>1.0.0</version>
 		</dependency>
 		<dependency>
 			<groupId>it.atac</groupId>
@@ -56,17 +84,11 @@
 			<artifactId>NoSQL</artifactId>
 			<version>1.0.0</version>
 		</dependency>
-		<!-- Spring Websocket -->
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-websocket</artifactId>
+			<groupId>it.atac</groupId>
+			<artifactId>GtfsDataHandler</artifactId>
+			<version>1.0.0</version>
 		</dependency>
-		<!-- Spring Messaging -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-messaging</artifactId>
-		</dependency>
-
 	</dependencies>
 	<build>
 		<plugins>
@@ -74,7 +96,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<finalName>GtfsDataHandler-${project.version}</finalName>
+					<finalName>RealtimeDataCommunication-${project.version}</finalName>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>

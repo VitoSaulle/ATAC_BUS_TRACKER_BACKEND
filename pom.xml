@@ -16,6 +16,7 @@
         <module>Data</module>
         <module>NoSQL</module>
         <module>GtfsDataHandler</module>
+        <module>RealtimeDataCommunication</module>
     </modules>
 
 	<properties>
