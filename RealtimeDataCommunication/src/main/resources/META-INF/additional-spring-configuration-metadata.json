@@ -1,0 +1,22 @@
+{"properties": [
+  {
+    "name": "PositionRetriever.job.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'PositionRetriever.job.enabled'"
+  },
+  {
+    "name": "PositionRetriever.job.cronExpression",
+    "type": "java.lang.String",
+    "description": "A description for 'PositionRetriever.job.cronExpression'"
+  },
+  {
+    "name": "PositionRetriever.job.description",
+    "type": "java.lang.String",
+    "description": "A description for 'PositionRetriever.job.description'"
+  },
+  {
+    "name": "PositionRetriever.job.key",
+    "type": "java.lang.String",
+    "description": "A description for 'PositionRetriever.job.key'"
+  }
+]}

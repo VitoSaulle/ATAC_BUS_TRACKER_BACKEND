@@ -20,3 +20,11 @@ spring:
       properties:
         '[spring.json.key.default.type]': java.lang.String  # Default type for JSON key deserialization
         '[spring.json.value.default.type]': "[B]"  # Default type for JSON value deserialization (byte array)
+
+        
+PositionRetriever:
+  job:
+    enabled: true
+    cronExpression: 0/30 * * ? * * *
+    description: Job per il recupero delle ultime posizioni
+    key: PositionRetriever

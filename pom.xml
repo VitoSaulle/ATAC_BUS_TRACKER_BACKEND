@@ -14,6 +14,9 @@
         <module>RawFileHandler</module>
         <module>KafkaHandler</module>
         <module>Data</module>
+        <module>NoSQL</module>
+        <module>GtfsDataHandler</module>
+        <module>RealtimeDataCommunication</module>
     </modules>
 
 	<properties>

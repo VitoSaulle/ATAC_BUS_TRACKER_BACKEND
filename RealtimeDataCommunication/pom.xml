@@ -1,13 +1,11 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>it.atac</groupId>
-	<artifactId>RawFileHandler</artifactId>
-	<name>RawFileHandler</name>
 	<version>1.0.0</version>
-	<description>Raw File Handler Module</description>
+	<groupId>it.atac</groupId>
+	<artifactId>RealtimeDataCommunication</artifactId>
+	<name>RealtimeDataCommunication</name>
 	<packaging>jar</packaging>
+	<description>Realtime Data and API Communication Module</description>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -31,21 +29,13 @@
 		</dependencies>
 	</dependencyManagement>
 	<dependencies>
-		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-mongodb</artifactId>
 		</dependency>
-		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<!-- Spring Webflux (optional, if you're using Spring WebFlux along with
-		Reactor) -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-webflux</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.protobuf-java-format</groupId>
@@ -76,6 +66,10 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-quartz</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>it.atac</groupId>
 			<artifactId>KafkaHandler</artifactId>
 			<version>1.0.0</version>
@@ -85,12 +79,6 @@
 			<artifactId>Data</artifactId>
 			<version>1.0.0</version>
 		</dependency>
-
-		<dependency>
-			<groupId>com.google.code.gson</groupId>
-			<artifactId>gson</artifactId>
-		</dependency>
-
 		<dependency>
 			<groupId>it.atac</groupId>
 			<artifactId>NoSQL</artifactId>
@@ -108,7 +96,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<finalName>RawFileHandler-${project.version}</finalName>
+					<finalName>RealtimeDataCommunication-${project.version}</finalName>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>
