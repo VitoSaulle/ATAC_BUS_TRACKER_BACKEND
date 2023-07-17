@@ -1,34 +1,35 @@
 package it.atac.project.websocket.listener;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
-import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.messaging.SessionSubscribeEvent;
 
+import it.atac.project.services.LatestGtfsDataRetrieverService;
+import it.atac.project.websocket.services.MessageSenderService;
 import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
 public class SubscribeListener implements ApplicationListener<SessionSubscribeEvent> {
 
-    private final SimpMessagingTemplate messagingTemplate;
+	@Autowired
+	private MessageSenderService messageSenderService;
 
-    public SubscribeListener(SimpMessagingTemplate messagingTemplate) {
-        this.messagingTemplate = messagingTemplate;
-    }
+	@Autowired
+	private LatestGtfsDataRetrieverService latestGtfsDataRetrieverService;
 
-    @Override
-    public void onApplicationEvent(SessionSubscribeEvent event) {
-        String subscribedTopic = String.valueOf(event.getMessage().getHeaders().get("simpDestination"));
+	@Override
+	public void onApplicationEvent(SessionSubscribeEvent event) {
+		String subscribedTopic = String.valueOf(event.getMessage().getHeaders().get("simpDestination"));
 
-        if ("/topic/events".equals(subscribedTopic)) {
-            log.info("Generating response for subscribed client to /topic/events");
-        } else if ("/topic/mintings".equals(subscribedTopic)) {
-            log.info("Generating response for subscribed client to /topic/mintings");
-        }
-    }
+		try {
+			var latestRegisteredPosition = latestGtfsDataRetrieverService.retrieveLastData();
+			messageSenderService.sendMessageToTopic(subscribedTopic, latestRegisteredPosition);
+		} catch (Exception e) {
+			log.error("Error while sending the response to the subscriber. {}", e.getMessage());
+		}
 
-    public void generateResponse() {
-        messagingTemplate.convertAndSend("/topic/events", "aaaaaaaaaa");
-    }
+	}
+
 }

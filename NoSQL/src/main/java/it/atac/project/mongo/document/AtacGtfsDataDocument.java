@@ -13,20 +13,22 @@ import lombok.Data;
 @Document(collection = "AtacGtfsDataDocument")
 public class AtacGtfsDataDocument {
 
-	@Id
-	private ObjectId id;
-	
-	private Instant acquiredAt;
-	
-	private String matricola;
-	
-	private String targa;
-	
-	private String routeId;
-	
-	private Float latitude;
-	
-	private Float longitude;
-	
-	private Integer currentStop;
+    @Id
+    private ObjectId id;
+
+    private Instant acquiredAt;
+
+    private String matricola;
+
+    private String targa;
+
+    private String routeId;
+
+    private Float latitude;
+
+    private Float longitude;
+
+    private Integer currentStop;
+
+  
 }

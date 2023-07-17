@@ -42,8 +42,9 @@ public class GtfsParserService {
 	}
 
 	private void parseAndSaveData(List<AtacGtfsData> gtfsDataList) {
-
-		var documentList = dataToDocumentService.generateGtfsDataDocuments(gtfsDataList, Instant.now());
+		
+		var acquisitionTimestamp = Instant.now();
+		var documentList = dataToDocumentService.generateGtfsDataDocuments(gtfsDataList, acquisitionTimestamp);
 		try {
 			gtfsDataPersister.persistGtfsDataDocuments(documentList);
 		} catch (DataAccessException e) {

@@ -25,6 +25,6 @@ spring:
 PositionRetriever:
   job:
     enabled: true
-    cronExpression:  0 * * ? * * *
+    cronExpression: 0/30 * * ? * * *
     description: Job per il recupero delle ultime posizioni
     key: PositionRetriever
