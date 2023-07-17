@@ -24,6 +24,12 @@ public class FileRetrieverService {
 
 	// Set the download interval
 	private static final Duration DOWNLOAD_INTERVAL = Duration.ofSeconds(30);
+	
+	//set the retry Interval
+	private static final Duration RETRY_INTERVAL = Duration.ofSeconds(2);
+	
+	//set the number of retry
+	private static final Integer NUMBER_OF_RETRY = 3;
 
 	@SuppressWarnings("unused")
 	private final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
@@ -38,7 +44,7 @@ public class FileRetrieverService {
 
 		// Set up a Flux with a fixed download interval
 		Flux.interval(DOWNLOAD_INTERVAL).flatMap(i -> webClient.get().uri(FILE_ENDPOINT_URL).retrieve()
-				.bodyToMono(byte[].class).retryWhen(Retry.fixedDelay(3, Duration.ofSeconds(1))))
+				.bodyToMono(byte[].class).retryWhen(Retry.fixedDelay(NUMBER_OF_RETRY, RETRY_INTERVAL)))
 				.subscribe(responseBody -> {
 					try {
 						log.info("GTFS file downloaded successfully. length: {}", responseBody.length);

@@ -24,6 +24,7 @@ public class SubscribeListener implements ApplicationListener<SessionSubscribeEv
 		String subscribedTopic = String.valueOf(event.getMessage().getHeaders().get("simpDestination"));
 
 		try {
+			log.info("Subscribed!");
 			var latestRegisteredPosition = latestGtfsDataRetrieverService.retrieveLastData();
 			messageSenderService.sendMessageToTopic(subscribedTopic, latestRegisteredPosition);
 		} catch (Exception e) {
