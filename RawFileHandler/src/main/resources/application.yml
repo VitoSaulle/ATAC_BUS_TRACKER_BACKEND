@@ -15,8 +15,9 @@ spring:
     consumer:
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer  # Deserializer for consumer keys
       value-deserializer: org.apache.kafka.common.serialization.ByteArrayDeserializer  # Deserializer for byte array values
-      group-id: AtacQueue  # Consumer group ID
       auto-offset-reset: earliest  # Offset position when a new consumer joins the group
       properties:
         '[spring.json.key.default.type]': java.lang.String  # Default type for JSON key deserialization
         '[spring.json.value.default.type]': "[B]"  # Default type for JSON value deserialization (byte array)
+
+

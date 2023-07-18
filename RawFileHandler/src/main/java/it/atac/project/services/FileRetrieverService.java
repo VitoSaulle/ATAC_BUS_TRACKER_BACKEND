@@ -1,6 +1,5 @@
 package it.atac.project.services;
 
-import java.time.Duration;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
@@ -11,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import it.atac.project.kafka.handlers.service.RawFileTemplateHandlerService;
+import it.atac.project.utils.FileRetrieverConstant;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Flux;
 import reactor.util.retry.Retry;
@@ -18,18 +18,6 @@ import reactor.util.retry.Retry;
 @Slf4j
 @Service
 public class FileRetrieverService {
-
-	// Set the endpoint URL
-	private static final String FILE_ENDPOINT_URL = "https://romamobilita.it/sites/default/files/rome_rtgtfs_vehicle_positions_feed.pb";
-
-	// Set the download interval
-	private static final Duration DOWNLOAD_INTERVAL = Duration.ofSeconds(30);
-	
-	//set the retry Interval
-	private static final Duration RETRY_INTERVAL = Duration.ofSeconds(2);
-	
-	//set the number of retry
-	private static final Integer NUMBER_OF_RETRY = 3;
 
 	@SuppressWarnings("unused")
 	private final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
@@ -43,8 +31,10 @@ public class FileRetrieverService {
 		WebClient webClient = WebClient.create();
 
 		// Set up a Flux with a fixed download interval
-		Flux.interval(DOWNLOAD_INTERVAL).flatMap(i -> webClient.get().uri(FILE_ENDPOINT_URL).retrieve()
-				.bodyToMono(byte[].class).retryWhen(Retry.fixedDelay(NUMBER_OF_RETRY, RETRY_INTERVAL)))
+		Flux.interval(FileRetrieverConstant.DOWNLOAD_INTERVAL_SECONDS)
+				.flatMap(i -> webClient.get().uri(FileRetrieverConstant.FILE_ENDPOINT_URL).retrieve()
+						.bodyToMono(byte[].class).retryWhen(Retry.fixedDelay(FileRetrieverConstant.NUMBER_OF_RETRY,
+								FileRetrieverConstant.RETRY_INTERVAL_SECONDS)))
 				.subscribe(responseBody -> {
 					try {
 						log.info("GTFS file downloaded successfully. length: {}", responseBody.length);

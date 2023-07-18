@@ -6,23 +6,22 @@ import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBr
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
 
+import it.atac.project.utils.WebsocketConstants;
+
 @Configuration
 @EnableWebSocketMessageBroker
-public class WebSocketConfiguration implements WebSocketMessageBrokerConfigurer{
+public class WebSocketConfiguration implements WebSocketMessageBrokerConfigurer {
 
 	@Override
 	public void registerStompEndpoints(StompEndpointRegistry registry) {
-		registry.addEndpoint("/atac-ws") //previous stomp-endpoint
-			.setAllowedOriginPatterns("*").withSockJS();
-		
+		registry.addEndpoint(WebsocketConstants.STOMP_ENDPOINT_URL)
+				.setAllowedOriginPatterns(WebsocketConstants.ALLOWED_ORIGIN_PATTERNS).withSockJS();
 	}
 
 	@Override
 	public void configureMessageBroker(MessageBrokerRegistry registry) {
-
-		registry.enableSimpleBroker("/topic");//per pushare su un topic
-		registry.setApplicationDestinationPrefixes("/app");//per far arrivare le chiamate
+		registry.enableSimpleBroker(WebsocketConstants.MESSAGE_BROKER_DESTINATION_PREFIX);
+		registry.setApplicationDestinationPrefixes(WebsocketConstants.APPLICATION_DESTINATION_PREFIX);
 	}
 
 }
-

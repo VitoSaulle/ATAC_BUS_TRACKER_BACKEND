@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.atac.project.services.LatestGtfsDataRetrieverService;
+import it.atac.project.utils.WebsocketConstants;
 import it.atac.project.websocket.services.MessageSenderService;
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,7 +22,7 @@ public class PositionRetrieverService {
 		
 		try{
 			var lastAcquiredData = latestGtfsDataRetrieverService.retrieveLastData();
-			messageSenderService.sendMessageToTopic("/topic/position", lastAcquiredData);
+			messageSenderService.sendMessageToTopic(WebsocketConstants.POSITION_QUEUE, lastAcquiredData);
 		}catch(Exception e) {
 			log.error("Error while calling LatestGtfsDataRetrieverService, {}",e.getMessage());
 		}finally {			

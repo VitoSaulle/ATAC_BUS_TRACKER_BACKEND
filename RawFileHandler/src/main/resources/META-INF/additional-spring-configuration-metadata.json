@@ -1,0 +1,22 @@
+{"properties": [
+  {
+    "name": "file-retriever.endpoint-url",
+    "type": "java.lang.String",
+    "description": "A description for 'file-retriever.endpoint-url'"
+  },
+  {
+    "name": "file-retriever.download-interval-seconds",
+    "type": "java.lang.String",
+    "description": "A description for 'file-retriever.download-interval-seconds'"
+  },
+  {
+    "name": "file-retriever.retry-interval-seconds",
+    "type": "java.lang.String",
+    "description": "A description for 'file-retriever.retry-interval-seconds'"
+  },
+  {
+    "name": "file-retriever.number-of-retry",
+    "type": "java.lang.String",
+    "description": "A description for 'file-retriever.number-of-retry'"
+  }
+]}
